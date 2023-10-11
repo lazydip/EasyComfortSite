@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Styles -->
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .main-content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 0px;
+      }
+
+      .content-item {
+        padding: 10px;
+      }
+
+      .header-grid {
+        display: grid;
+        grid-template-rows: auto auto;
+      }
+
+      .header-image {
+        background-image: url("room.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        height: 150px;
+      }
+
+      .navbar {
+        width: 100%;
+        z-index: 1000;
+        padding: 0px 0;
+        background-color: #004fa8;
+      }
+
+      .navbar-toggler:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      body.navbar-is-fixed .anchor-offset:before {
+        display: block;
+        content: " ";
+        margin-top: -50px; /* Negative value of fixed header height*/
+        height: 50px; /* Same height value as above */
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .logo-box {
+        gap: 10px;
+      }
+
+      .nav-link-menu {
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #ff9148 !important;
+        padding: 5px;
+      }
+
+      .brand-text {
+        font-size: 24px;
+        color: #ff9148;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .navbar-nav {
+        text-align: right;
+      }
+
+      .navbar-nav .nav-item {
+        justify-content: flex-end;
+        display: flex;
+      }
+
+      .navbar .fixed-top {
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+
+      .transport-icon {
+        height: 170px; /* Adjust as needed */
+        width: auto;
+        margin-right: 8px; /* Adds some space between the icon and the text/link */
+        vertical-align: middle; /* Aligns the middle of the image with the middle of the line height of its parent */
+      }
+
+      .illustration {
+        height: auto;
+        width: 100%;
+        min-width: 300px; /* Set the minimum width as per your requirements */
+        margin-right: 1%; /* Adds some space between the icon and the text/link */
+        vertical-align: middle; /* Aligns the middle of the image with the middle of the line height of its parent */
+      }
+
+      .illustration-container {
+        display: flex;
+        justify-content: space-between; /* Horizontally center the image */
+        align-items: center; /* Vertically center the image, if needed */
+        width: 100%;
+      }
+      .nav-link {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .nav-link-transport {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .nav-link-transport > img {
+        margin: 0 auto;
+      }
+
+      .nav-link-transport > span {
+        font-size: 24px; /* Change font size as desired */
+        font-weight: bold; /* Change font weight as desired */
+        color: #000000; /* Change font color as desired */
+        text-transform: uppercase; /* Change to uppercase, remove if not needed */
+        letter-spacing: 2px; /* Add some letter spacing, adjust as needed */
+      }
+
+      .span-full {
+        grid-column: span 2;
+      }
+
+      .illustrated-row {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-gap: 10px; /* Adjust as per your requirement */
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 768px) {
+        .illustrated-row {
+          grid-template-columns: 1fr; /* This makes the content stack vertically */
+        }
+      }
+    </style>
+
+    <script>
+      window.addEventListener("scroll", function () {
+        const headerImageHeight =
+          document.querySelector(".header-image").offsetHeight;
+        const navbar = document.querySelector(".navbar");
+        const body = document.querySelector("body");
+
+        if (window.pageYOffset > headerImageHeight) {
+          navbar.classList.add("fixed-top");
+          body.classList.add("navbar-is-fixed");
+        } else {
+          navbar.classList.remove("fixed-top");
+          body.classList.remove("navbar-is-fixed");
+        }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        var navItems = document.querySelectorAll(".navbar-nav .nav-item a");
+
+        navItems.forEach(function (navLink) {
+          navLink.addEventListener("click", function () {
+            var navbarToggle = document.querySelector(".navbar-toggler");
+            if (window.getComputedStyle(navbarToggle).display !== "none") {
+              navbarToggle.click();
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="grid-container header-grid">
+      <div class="header-image"></div>
+
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand logo-box p-2 d-flex align-items-center" href="#">
+          <img
+            src="../Assets/Img/logo.png"
+            alt="Logo"
+            width="30"
+            height="30"
+            class="d-inline-block align-top mr-3"
+          />
+          <h4 class="m-0 ml-5 brand-text">EASYCOMFORT / ALURA-1106</h4>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+          style="padding-right: 20px"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link-menu" href="#home" data-bs-scroll>Home</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link-menu"
+                href="#check-in-instructions"
+                data-bs-scroll
+                >Check-in</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link-menu" href="#">Pricing</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="main-content-grid content-grid">
+      <!-- Single column content spanning two columns -->
+      <div class="content-item span-full">
+        <h1 id="home" class="fs-4 mb-3">Welcome to EASYCOMFORT Place</h1>
+        <p class="fs-5">
+          Thank you for choosing this apartment for your stay in Calgary.
+          Located in downtown, my goal is to offer a comfortable space for every
+          guest.
+        </p>
+        <h1 class="fs-4 mb-3">Place Address</h1>
+        <ul class="fs-5">
+          <li>1320 1 St SE, Calgary, AB T2G 0G8</li>
+          <li>Apartment Number 1106</li>
+        </ul>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.723683225893!2d-114.06330212340784!3d51.039723971710714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5371700382567749%3A0x6e9c2ce47b5e21!2sAlura%2C%20We%20do%20not%20have%20sales%20or%20rental%20office.!5e0!3m2!1sen!2sca!4v1696557970546!5m2!1sen!2sca"
+          width="100%"
+          height="150px"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+
+        <h1 class="fs-4 mb-3">Building Concierge Information</h1>
+        <p class="fs-5">
+          Please note, the building concierge is not affiliated with EASYCOMFORT
+          place's short-term rentals. We kindly ask guests to direct
+          rental-related questions away from them.
+        </p>
+        <h1 class="fs-4 mb-3">Need Assistance?</h1>
+        <p class="fs-5">
+          If you have any questions or need assistance during your stay, please
+          call me, David, directly at +14038000109. I'm always here to help.
+          Additionally, you can use the chat feature on our website for
+          immediate communication.
+        </p>
+        <h1 class="fs-4 mb-3 anchor-offset" id="check-in-instructions">
+          Check-in Process Overview
+        </h1>
+        <p class="fs-5">
+          The official check-in time is 3 PM, allowing the cleaning crew ample
+          time to prepare the apartment for you. While we aim for perfection by
+          this time, we often manage to have everything ready ahead of schedule.
+          Should this be the case, I'll promptly notify you. For those arriving
+          earlier, you have the option to drop off your luggage at the apartment
+          and utilize the parking spot starting from 11 am.
+        </p>
+        <p class="fs-5">
+          Being situated in downtown, the building adheres to strict security
+          measures. It's crucial to familiarize yourself with the check-in
+          instructions to ensure a seamless experience. If prompted on the
+          intercom during your check-in, kindly state your name and reference
+          the apartment number, 1106.
+        </p>
+        <p class="fs-5">
+          Your check-in route is determined by your mode of transportation:
+        </p>
+        <p class="fs-5">
+          Arriving with a car? Your entry point is the garage door, with the
+          intercom system granting access 24/7 for your convenience.
+        </p>
+        <p class="fs-5">
+          If you're arriving by public transportation or cab, your designated
+          entry is the main front door. It's worth noting that the front door
+          intercom, situated in the vestibule, is locked during nighttime hours
+          due to security protocols. Should your arrival coincide with these
+          hours and you need to access the vestibule's intercom, please give me
+          a heads-up in advance. I'll coordinate with the night guard to
+          facilitate your entry.
+        </p>
+        <p class="fs-5">
+          For any uncertainties regarding the instructions or the check-in
+          process, don't hesitate to call me for clarity.
+        </p>
+        <h1 class="fs-4 mb-3 anchor-offset">Check-in instructions:</h1>
+      </div>
+
+      <!-- Multi column content -->
+      <div class="content-item">
+        <a
+          class="nav-link-transport d-flex align-items-center"
+          href="#check-in-with-car"
+          data-bs-scroll
+        >
+          <img
+            src="../Assets/Img/car.png"
+            alt="Car Icon"
+            class="transport-icon"
+          />
+          <span>With Car</span>
+        </a>
+      </div>
+      <div class="content-item">
+        <a
+          class="nav-link-transport d-flex align-items-center"
+          href="#check-in-without-car"
+          data-bs-scroll
+        >
+          <img
+            src="../Assets/Img/taxi.png"
+            alt="Car Icon"
+            class="transport-icon"
+          />
+          <span>No Car </span>
+        </a>
+      </div>
+
+      <div class="content-item span-full">
+        <h1 class="fs-4 mb-3 anchor-offset" id="check-in-with-car">
+          Check-in instructions with a car:
+        </h1>
+      </div>
+
+      <div class="illustrated-row span-full">
+        <div class="content-item">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d7095.739590889737!2d-114.059953!3d51.039740447138506!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTHCsDAyJzIyLjYiTiAxMTTCsDAzJzM1LjIiVw!5e0!3m2!1sen!2sus!4v1696729290666!5m2!1sen!2sus"
+            width="100%"
+            height="150"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="content-item">
+          <p class="fs-5">
+            If you have a car and need parking, start by locating the parking
+            entrance behind the Alura/Nuera buildings at 14 SE. As you approach
+            the area, the parking lot entrance should be easy to spot. For
+            directions, refer to the Google Maps display next to this
+            information.
+          </p>
+        </div>
+      </div>
+      <div class="content-item span-full">
+        <p class="fs-5">
+          To assist in finding the parking entrance, a drawing with arrows
+          indicating the surrounding area of the building and a photo
+          highlighting the exact entrance location have been provided. Please
+          refer to these visuals next to this text for guidance.
+        </p>
+      </div>
+      <div class="content-item illustration-container">
+        <img
+          src="../Assets/Img/garage-map.png"
+          alt="Alura garage"
+          class="illustration"
+        />
+      </div>
+      <div class="content-item illustration-container">
+        <img
+          src="../Assets/Img/garage-entr.png"
+          alt="Alura garage Entrance"
+          class="illustration"
+        />
+      </div>
+
+      <div class="illustrated-row span-full">
+        <div class="content-item illustration-container">
+          <img
+            src="../Assets/Img/garage-intercom.jpg"
+            alt="Alura garage Entrance intercom"
+            class="illustration"
+          />
+        </div>
+        <div class="content-item">
+          <p class="fs-5">
+            Please proceed to the garage gate and dial the number 2173. The team
+            will open the garage gate for you remotely.
+          </p>
+          <p class="fs-5">
+            Once inside the condo's spiral parking structure, always stay close
+            to the wall on your right side. As you descend, consistently take
+            the first available right turn without skipping any. This path will
+            guide you correctly through the spiral. Be attentive to parking spot
+            numbers as you navigate, and you'll soon find your designated spot.
+            If uncertain or lost, continue along the spiral, and you'll
+            eventually locate your spot or a place to safely recalibrate your
+            direction.
+          </p>
+        </div>
+      </div>
+      <div class="content-item span-full illustration-container">
+        <img
+          src="../Assets/Img/no-tailgate.jpg"
+          alt="No tailgate"
+          class="illustration"
+        />
+      </div>
+
+      <div class="content-item span-full">
+        <p class="fs-5">
+          Every Vehicle must use Remote or Intercom Panel Before Entering
+          parkade. Make sure door is closing behind you, before leaving the
+          door. If vehicle is in front, keep some space, let the door close
+          before proceeding.
+        </p>
+      </div>
+
+      <div class="content-item span-full illustration-container">
+        <img src="parking-spot.png" alt="Parking Spot" class="illustration" />
+      </div>
+
+      <div class="content-item span-full">
+        <p class="fs-5">Please, park your car in the designated spot, 196.</p>
+      </div>
+
+      <div class="illustrated-row span-full">
+        <div class="content-item illustration-container">
+          <img
+            src="garage-entrance-elivator.png"
+            alt="Alura garage Entrance Elivator"
+            class="illustration"
+          />
+        </div>
+        <div class="content-item">
+          <p class="fs-5">
+            After parking, please find the door to the Alura building, as
+            depicted in the picture. Once you locate the door, the elevator will
+            be inside. Proceed to the building elevator and take it up to the
+            11th floor.
+          </p>
+          <p class="fs-5">
+            Once you arrive, please proceed to apartment number 1106. Our team
+            will remotely unlock the door for you. Please enter the apartment
+            and make yourself at home.
+          </p>
+          <p class="fs-5">
+            Inside the apartment, you will find the key, remote, and fog on the
+            countertop in the basket.
+          </p>
+        </div>
+      </div>
+
+      <div class="illustrated-row span-full">
+        <div class="content-item illustration-container">
+          <img
+            src="lobby-intercom.png"
+            alt="Lobby Intercom"
+            class="illustration"
+          />
+        </div>
+        <div class="content-item">
+          <p class="fs-5">If elevator button 11 is not working:</p>
+          <p class="fs-5">
+            Sometimes there is an issue when the elevator button for the 11th
+            floor cannot be pushed. This might happen if the entrance timeout
+            has expired or someone has already arrived on the 11th floor.
+          </p>
+          <p class="fs-5">
+            In this case, go to the lobby - the button for this floor will
+            always work from the garage. The intercom is located in the entrance
+            area, situated between the front door and the inside door. Approach
+            the intercom and dial A1106.
+          </p>
+          <p class="fs-5">
+            The entrance door will be opened remotely. Call the elevator and
+            press the 11th floor. The door will be unlocked.
+          </p>
+        </div>
+      </div>
+
+      <div class="illustrated-row span-full">
+        <div class="content-item illustration-container">
+          <img
+            src="../Assets/Img/remote-contorl.png"
+            alt="Garage remote controle"
+            class="illustration"
+          />
+        </div>
+        <div class="content-item">
+          <p class="fs-5">
+            Use the black garage door opener and press Button 1 for entry. The
+            remote control can be used both to tap in the elevator and to enter
+            the building.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-item span-full">
+        <p class="fs-5">
+          Once you have the fob, you can access the building, your floor, lobby,
+          and garage within the building.
+        </p>
+      </div>
+
+      <div class="content-item span-full">
+        <h1 class="fs-4 mb-3 anchor-offset" id="check-in-without-car">
+          Check-in instructions with a car:
+        </h1>
+      </div>
+
+      <div class="content-item span-full">
+        <p class="fs-5">
+          If you're arriving from Calgary airport by cab or Uber, simply mention
+          "Alura building" to the driver or select the same location in the Uber
+          application. For added convenience, you can refer to the Google Maps
+          display provided to pinpoint the building's location.
+        </p>
+      </div>
+
+      <div class="content-item span-full">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.723683225893!2d-114.06330212340784!3d51.039723971710714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5371700382567749%3A0x6e9c2ce47b5e21!2sAlura%2C%20We%20do%20not%20have%20sales%20or%20rental%20office.!5e0!3m2!1sen!2sca!4v1696907400620!5m2!1sen!2sca"
+          width="100%"
+          height="150px"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <div class="illustrated-row span-full">
+        <div class="content-item illustration-container">
+          <img src="front-door.jpg" alt="Front Door" class="illustration" />
+        </div>
+        <div class="content-item">
+          <p class="fs-5">
+            For a visual reference, a photo of the building entrance is
+            available to help you recognize the entry point upon arrival.
+          </p>
+          <p class="fs-5">
+            Check-in for your stay at this condo unit will be conducted remotely
+            to make the process easy for you. This means that instead of meeting
+            in person for check-in, you will complete the process digitally. The
+            host will remotely unlock all doors and elevators for you. Don't
+            worry, just follow the instructions provided. If you have any
+            questions or concerns, please don't hesitate to reach out to the
+            host for assistance.
+          </p>
+        </div>
+      </div>
+
+      <div class="illustrated-row span-full">
+        <div class="content-item illustration-container">
+          <img
+            src="front-door-intercom.png"
+            alt="Front Door Intercom"
+            class="illustration"
+          />
+        </div>
+        <div class="content-item">
+          <ul class="fs-5">
+            <li>
+              Proceed to the ALURA entrance and dial A1106 on the buzzer panel.
+            </li>
+            <li>
+              The entrance door will be opened remotely. Call the elevator and
+              press the 11th floor. The door will be unlocked.
+            </li>
+            <li>
+              The key, fob and parking opener control will be found inside
+              apartment 1106 on the kitchen table.
+            </li>
+            <li>
+              Once the booking is made, an email containing the instructions for
+              accessing the unit via the smart lock will be sent to you. If you
+              did not receive the email, please reach out to the host to request
+              it.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-item span-full">
+        <p class="fs-5">
+          Due to the building's enhanced security measures, the main outside
+          door is locked during nighttime hours, restricting access to the
+          buzzer panel. If you plan to check in after dark, please inform in
+          advance, preferably soon after confirming your reservation. Rest
+          assured, once you have a fob, you can use it to access the building at
+          any time.
+        </p>
+      </div>
+    </div>
+    <!-- Include Bootstrap's JS and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
